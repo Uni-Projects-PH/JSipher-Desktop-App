@@ -1,0 +1,141 @@
+[
+  {
+    "type": "kea.UMLClass",
+    "size": {
+      "width": 200,
+      "height": 160
+    },
+    "identifier": "Class",
+    "name": "Zutat",
+    "attributes": [
+      {
+        "visibility": "public",
+        "attributeName": "Zutatenliste",
+        "attributeType": "List",
+        "multiplicity": "1",
+        "defaultValue": "",
+        "isStatic": false,
+        "properties": {
+          "isComposite": false,
+          "isDerived": false,
+          "isDerivedUnion": false,
+          "isReadOnly": false,
+          "isStatic": false,
+          "isUnique": false
+        }
+      }
+    ],
+    "operations": [],
+    "minWidth": 200,
+    "minHeight": 160,
+    "minHeaderRectHeight": 40,
+    "minAttributeRectHeight": 60,
+    "minOperationRectHeight": 60,
+    "headerRectHeight": 40,
+    "attributesRectHeight": 60,
+    "operationsReactHeight": 60,
+    "id": "81f39c39-adfc-49dd-a727-cfce297e1be2",
+    "position": {
+      "x": 1095,
+      "y": 530
+    },
+    "primaryColor": "#F0F0F0",
+    "secondaryColor": "#333333",
+    "labelColor": "#333333",
+    "z": 10,
+    "attrs": {
+      "uml_class_name_rect": {
+        "stroke": "#333333"
+      },
+      "uml_class_attrs_rect": {
+        "stroke": "#333333",
+        "fill": "#F0F0F0"
+      },
+      "uml_class_operations_rect": {
+        "stroke": "#333333",
+        "fill": "#F0F0F0"
+      },
+      "uml_class_name_text": {
+        "text": "<< Class >>\nZutat"
+      },
+      "uml_class_attribute_text-0": {
+        "ref": "uml_class_attrs_rect",
+        "refY": 5,
+        "refX": 5,
+        "fill": "black",
+        "textAnchor": "start",
+        "textDecoration": "none",
+        "text": "+ Zutatenliste : List [1] {  }",
+        "fontSize": 12
+      }
+    }
+  },
+  {
+    "type": "kea.Link",
+    "linkType": "solid",
+    "targetMarker": "none",
+    "sourceMarker": "diamond_empty",
+    "keaLabels": [
+      {
+        "position": "source",
+        "value": "koch"
+      },
+      {
+        "position": "target",
+        "value": "zutat"
+      }
+    ],
+    "source": {
+      "x": 955,
+      "y": 295
+    },
+    "target": {
+      "id": "81f39c39-adfc-49dd-a727-cfce297e1be2",
+      "selector": "boundary"
+    },
+    "id": "e07a3a48-fce8-4077-ba4b-ccb0e53289ad",
+    "z": 11,
+    "labels": [
+      {
+        "attrs": {
+          "text": {
+            "text": "koch"
+          }
+        },
+        "position": {
+          "distance": 0.1,
+          "offset": 25
+        }
+      },
+      {
+        "attrs": {
+          "text": {
+            "text": "zutat"
+          }
+        },
+        "position": {
+          "distance": 0.8352771577783202,
+          "offset": 30.87190819700587,
+          "angle": 0
+        }
+      }
+    ],
+    "attrs": {
+      "line": {
+        "sourceMarker": {
+          "d": "M 20 0 L 10 -8 L 0 0 L 10 8 Z",
+          "stroke": "black",
+          "fill": "white",
+          "stroke-dasharray": "100%",
+          "stroke-width": 2
+        },
+        "targetMarker": {
+          "stroke": "black",
+          "fill": "white",
+          "stroke-dasharray": "100%",
+          "stroke-width": 2
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "lang.headline": "JSipher",
+  "lang.subtitle": "XMI-To-JSON-Converter for ST1 & MAS",
+  "lang.jack-subtitle": "JACK3-Converter for ST1 & MAS",
+
+  "lang.first-paragraph": "This converter was developed as part of the bachelor thesis 'Konzeption, Entwicklung und Evaluierung eines XMI-nach-JSON-Konverters und eines KEA-Mod-Regelsatzes zum automatisierten formativen Feedback für UML/MOOS Klassendiagramme' (in english: 'Conception, development and evaluation of an XMI-to-JSON converter and a KEA-Mod rule set for automated formative feedback for UML/MOOS class diagrams') by Paul Hufnagel under the supervision of Prof. Dr. Mario Winter (first examiner) & Prof. Dr. Lutz Köhler (second examiner).",
+  "lang.second-paragraph": "The converter is tailored in its functionality to the requirements of the bachelor thesis, which means that it - currently - does not support all diagrams and thus only works in a limited way. Also, occasional bugs may still be included.",
+  "lang.third-paragraph": "Please understand that.",
+  "lang.fourth-paragraph": "The converter does not save any data persistently on a server. After closing the browser or the desktop app, all data is lost.",
+
+  "lang.jack-second-paragraph": "The converter is tailored in its functionality to the requirements of the bachelor thesis. Also, occasional bugs may still be included.",
+  "lang.jack-fourth-paragraph": "The converter does not save any data persistently on a server. After closing the browser or the desktop app, all data is lost.",
+
+  "lang.footer": "© 2023 Cologne University of Applied Sciences; Developed by Paul Hufnagel",
+  "lang.footer-legal": "The app icon was created by Freepik; Provided via flaticon.com",
+  "lang.start-button": "Start conversion process",
+
+  "lang.navbar-help": "Help",
+  "lang.navbar-jack-transformator": "JACK3-Converter",
+  "lang.navbar-xmi-transformator": "XMI-Converter",
+  "lang.navbar-home": "Home",
+
+  "lang.help-title": "Do you need assistance?",
+  "lang.help-text": "This converter does not provide a contact form, but the links below will take you to the relevant forum for your module. There is a collective thread available, where all questions can be asked collectively and will also be answered.",
+  "lang.help-link-st1": "Forum for ST1",
+  "lang.help-link-mas": "Forum for MAS",
+  "lang.help-link-intel": "Forum links (redirection to ILIAS):",
+  "lang.help-close": "[X] Close pop-up",
+
+  "lang.upload-here": "Please upload your UML-Diagram-File here:",
+  "lang.upload-info": "Please note that the file must be a '.uml'- or '.xmi'-file.",
+
+  "lang.back-btn": "One step back",
+  "lang.next-btn": "Evaluate file",
+  "lang.test-btn": "Verify file",
+  "lang.download-btn": "Download converted JSON file",
+
+  "lang.jack-next-btn": "Switch Header",
+
+  "lang.mouseover-return-home": "This not only returns you to the home page, but also resets all data",
+
+  "lang.selected-pkg-msg": "The selected package is: ",
+  "lang.select-here": "Please select the package you want to convert here:"
+}

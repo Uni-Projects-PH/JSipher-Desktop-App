@@ -1,0 +1,188 @@
+-- PAPYRUS XMI ANWEISUNGEN --
+
+KLASSEN:
+<packagedElement xmi:type="uml:Class" xmi:id="_y7N9QA-MEe6QaIJmSfJw8Q" name="Rezept" isAbstract="true" isActive="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_74v48A-MEe6QaIJmSfJw8Q" name="RezeptID">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_g1bqUw-REe6LYc9A_SZ23g" name="zutat" type="_Hv2tAA-REe6LYc9A_SZ23g" aggregation="composite" association="_g1bqUA-REe6LYc9A_SZ23g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_g1cRYA-REe6LYc9A_SZ23g"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_g1cRYQ-REe6LYc9A_SZ23g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sQxdQBA2Ee6AHf2U09EywQ" name="RezeptName" isStatic="true" isOrdered="true" isReadOnly="true" isDerived="true" isDerivedUnion="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w_BVEBA2Ee6AHf2U09EywQ" value="*"/>
+        <defaultValue xmi:type="uml:StringExpression" xmi:id="_0z8_QBA2Ee6AHf2U09EywQ" name="Leer">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_jOMv4BA-Ee6AHf2U09EywQ" name="RezeptSchritte" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kc0fIBA-Ee6AHf2U09EywQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kdWDkBA-Ee6AHf2U09EywQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+
+    - KOMMENTAR -
+    packagedElement sind alle Elemente, die Papyrus verpackt werden. Selbst Packages selbst gelten als "packagedElement". Was die Klasse vom Package unterscheidet ist "xmi:type". Dieser ist bei Klassen "uml:Class". Dem packagedElement ordnen sich alle Aspekte unter, die in der Klasse enthalten sind, wie Methoden (ownedOperation) oder Attribute (ownedAttribute).
+    
+    - FAKTEN (RELEVANT FÜR KONVERT) -
+
+    packagedElement (KLASSEN-OBJEKT)
+    1. "xmi:type" (uml:Class) gibt den Typ des Objekts zurück (hier Klasse)
+    2. "name" ist der Name der Klasse
+    3. Eine Klasse abstrakt oder aktiv sein. Wenn eines von beiden (oder beide) zutrifft, so ist ein entsprechender Boolean hinter "name" vermerkt: "isAbstract=true"/"isActive=true". Sind die Werte false, tauchen sie nicht auf
+
+    "ownedAttribute" (ATTRIBUTE-ELEMENT)
+    1. "xmi:type" (uml:Property) gibt den Typ des Objekts zurück (hier Attribut)
+    2. "name" ist der Name des Attributs
+        a. <type> ist der Typ des Attributs. "xmi:type" scheint nicht hilfreich, da dies der Obertyp ist. Der eigentliche Typ kann aus "href" ausgelesen werden am Ende steht "uml#String" für Strings
+    3. Des Weiteren können Attribute auch statisch und Co sein. Davon gibt es 5: isStatic, isOrdered, isReadOnly, isDerived, isDerivedUnion. Sind sie "true" stehen sie ebenfalls in der Reihe. Sind sie "false" tauchen sie gar nicht erst auf.
+    4. Die Sichtbarkeit "visibility" wird ebenfalls in der Zeile des "ownedAttribute" geregelt. Sie steht direkt hinter "name". Ist sie public, steht dort nichts, sonst gibt es noch: "private", "protected", "package"
+
+    "ownedOperation (METHODEN-ELEMENT)
+    1. "xmi:type" (uml:Operation) gibt den Typ des Objekts zurück (hier Methode)
+    2. "name" ist der Name der Methode
+        a. <ownedParameter> ist der Parameter der Methode. 
+            a.1. "xmi:type" scheint nicht hilfreich, da dies nur ebenfalls "Parameter" zurückgibt. "name" gibt den Methodennamen, "direction" die Richtung (hier inout. Weitere sind: in, out, return)        
+
+
+    Allgemein: Multiplizitäten im Bezug auf Klassenattribute
+    1. Multiplizitäten werden stets dort angezeigt, wo sie deklariert werden. So kann ein Attribut Multiplizitäten besitzen oder die Assoziation. 
+    2. Bei Attributen stehen diese unter "ownedAttribute". Steht dort nix, wird die Standard-Multiplizität gewählt. Diese ist immer "1" (auch bei Assoziationen). 
+        a. Findet sich darunter nur <upperValue> und etwas weiter hinten in der Zeile "value=*", dann ist die Multiplizität "1..*", Das liegt daran, dass Papyrus den unteren Wert (lowerValue) standardmäßig eh als "1" sieht und somit nur die obere Grenze definiert werden muss. Statt dem Stern könnte dort jede Zahl stehen.
+        b. Findet sich darunter sowhl <upperValue> als auch <lowerValue> kann dies nur noch auf die verbleibenden 2 Multiplizitäten hindeuten. 
+            b.1. <lowerValue> trägt dabei keinen Wert. Dennoch steht es in der Liste. Damit ist es nicht "1". Der Wert, der hier angenomen wird ist "0".
+            b.2. Welche Multiplizität es nun von den 2 verbleibenden ist, gibt die <upperValue> her: ist es "value=1" ist die Multiplizität "0..1". Ist es "value=*" ist die Multiplizität "0..*". Auch hier könnte die obere Grenze wieder jede erdenkliche Zahl über 0 sein.
+        c. Zusätzlich dazu gibt es noch eine custom Möglichkeit: Als Multiplizität kann eine eigene feste Zahl über >=0 eingetragen werden. Dies sieht wie folgt aus:
+
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yjeJYBBBEe6AHf2U09EywQ" value="11"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yjuoEBBBEe6AHf2U09EywQ" value="11"/>
+
+            Sowohl <lowerValue> als auch <upperValue> nehmen den entsprechenden Wert an, der hier also nur 11 betragen kann.
+
+
+
+ASSOZIATONEN:
+
+<packagedElement xmi:type="uml:Association" xmi:id="_z5H6gA-NEe6QaIJmSfJw8Q" memberEnd="_z5ML8A-NEe6QaIJmSfJw8Q _z5OoMA-NEe6QaIJmSfJw8Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z5Lk4A-NEe6QaIJmSfJw8Q" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z5Lk4Q-NEe6QaIJmSfJw8Q" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_z5ML8A-NEe6QaIJmSfJw8Q" name="koch" type="_Ok5g8A-LEe6QaIJmSfJw8Q" association="_z5H6gA-NEe6QaIJmSfJw8Q">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pBOQ8A-aEe6LYc9A_SZ23g" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_z5OoMA-NEe6QaIJmSfJw8Q" name="rezept" type="_y7N9QA-MEe6QaIJmSfJw8Q" association="_z5H6gA-NEe6QaIJmSfJw8Q"/>
+    </packagedElement>
+	
+    <packagedElement xmi:type="uml:Association" xmi:id="_g1bqUA-REe6LYc9A_SZ23g" memberEnd="_g1bqUw-REe6LYc9A_SZ23g _g1cRYg-REe6LYc9A_SZ23g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g1bqUQ-REe6LYc9A_SZ23g" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g1bqUg-REe6LYc9A_SZ23g" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_g1cRYg-REe6LYc9A_SZ23g" name="rezept" type="_y7N9QA-MEe6QaIJmSfJw8Q" association="_g1bqUA-REe6LYc9A_SZ23g"/>
+    </packagedElement>
+	
+    <packagedElement xmi:type="uml:Association" xmi:id="_kqXUgA-REe6LYc9A_SZ23g" memberEnd="_kqX7kg-REe6LYc9A_SZ23g _kqX7kw-REe6LYc9A_SZ23g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kqX7kA-REe6LYc9A_SZ23g" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kqX7kQ-REe6LYc9A_SZ23g" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_kqX7kg-REe6LYc9A_SZ23g" name="zutat" type="_Hv2tAA-REe6LYc9A_SZ23g" association="_kqXUgA-REe6LYc9A_SZ23g"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_kqX7kw-REe6LYc9A_SZ23g" name="koch" type="_Ok5g8A-LEe6QaIJmSfJw8Q" association="_kqXUgA-REe6LYc9A_SZ23g"/>
+    </packagedElement>
+
+    - KOMMENTAR -
+    Assoziationen liegen in einem Package in der Regel über den Klassen (vermutlich weil A vor K im Alphabet kommt)
+
+    <packagedElement> (ASSOZIATONEN-OBJEKT)
+    1. "xmi:type" (uml:Association) gibt den Typ des Objekts zurück (hier Assoziation)
+    2. Eine Assoziation ist nicht benannt. Ihre Zugehörigkeit ergibt sich aus ihren Enden, diese ergeben sich wiederum aus den Tags <ownedEnd>. Davon hat eine Assoziation immer 2 (sonst wäre sie ja auch keine Assoziation).
+
+    <ownedEnd> (Enden der Assoziationen)
+    1. "xmi:type" ist der Typ des Objekts am jeweiligen Ende der Assoziation. Bei einer Assoziation zwischen zwei Klassenobjekten ist dies "uml:Property", was aber eigentlich dem Typ eines Attributs entspricht.
+    2. "name" ist der Klassenname, wo das jeweilige Ende anliegt. 
+    3. Auch Assoziationen besitzen Multiplizitäten. Diese bauen sich so auf, wie weiter oben im "KLASSEN"-Kapitel beschrieben. Gibt es weder ein <lowerValue> noch ein <upperValue> sind die Multiplizitäten an beiden Enden "1". Ansonsten dem Schema entsprechend, wie oben beschrieben.
+
+    Assoziationen, die diesem Benennungsschema folgen, sind standardmäßige Assoziationen (Keine aggregation oder Komposition)
+
+
+    Ist eine Assoziation Navigable also mit Pfeilspitze auf einer Seite, ändert sich der Aufbau. Das System funktioniert dann so ziemlich wie Aggregation und Komposition:
+    1. Die Klasse von der die Pfeilspitze weggeht, enthält als <ownedAttribute> und "xmi:type=uml:Property" die Klasse, zu der der Pfeil hinzeigt. Dies lässt sich auch dem "name" des <ownedAttribute> entnehmen. 
+    2. Die Klasse zu der der Pfeil hingeht ändert sich nicht.
+
+
+AGGREGATIONEN:
+
+<packagedElement xmi:type="uml:Association" xmi:id="_BDr3QBBSEe6AHf2U09EywQ" memberEnd="_BDseURBSEe6AHf2U09EywQ _BDseVBBSEe6AHf2U09EywQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BDr3QRBSEe6AHf2U09EywQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BDseUBBSEe6AHf2U09EywQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_BDseVBBSEe6AHf2U09EywQ" name="rezept" type="_5xmwwBBREe6AHf2U09EywQ" association="_BDr3QBBSEe6AHf2U09EywQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qd7rABBUEe6AHf2U09EywQ" value="18"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qeBxoBBUEe6AHf2U09EywQ" value="18"/>
+      </ownedEnd>
+</packagedElement>
+	
+<packagedElement xmi:type="uml:Class" xmi:id="_5xmwwBBREe6AHf2U09EywQ" name="Rezept">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_BDseURBSEe6AHf2U09EywQ" name="schritt" type="_95H_wBBREe6AHf2U09EywQ" aggregation="shared" association="_BDr3QBBSEe6AHf2U09EywQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BDseUhBSEe6AHf2U09EywQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BDseUxBSEe6AHf2U09EywQ" value="*"/>
+      </ownedAttribute>
+</packagedElement>
+	
+<packagedElement xmi:type="uml:Class" xmi:id="_95H_wBBREe6AHf2U09EywQ" name="Schritt"/>
+
+
+1. Aggregation ist wie folgt aufgebaut: Der weiße Diamant befindet sich auf der Seite der "ganzen" Klasse. Der Pfeil wiederum zeigt auf die "teil" Klasse. 
+2. Die Teilklasse wird als <ownedAttribute> in die "ganze" Klasse (hier Rezept) gegeben. Der Name des <ownedAttribute> ist der Name der Teilklasse kleingeschrieben.
+3. In der Zeile von <ownedAttribute> gibt es einen Wert "aggregation". Diese ist "shared" wenn es eine Aggregation ist. Bei Kompositionen ist er "composite".
+4. Die "uml:Association" hat nun nur noch ein <ownedEnd>. Dieses weißt mit dem "name" auf die "ganze" Klasse. Das andere Ende ergibt sich aus dem <ownedAttribute>, welches die Infos für die Teilklasse bereithält.
+5. Multiplizitäten funktionierten grundsätzlich wie oben. Hier gibt es jedoch 2 Eigenheiten:
+    5.1. Da die Teilklasse als <ownedAttribute> in die "ganze" Klasse gegeben wird, liegen die <lowerValue> und <upperValue>, die die Multiplizität angeben auch dort und nicht bei der Teilklasse selbst.
+    5.2. Die Standard-Multiplizitäten sind nicht auf beiden Seiten "1", sondern "1" auf der "ganze" Klassen-Seite und "0..1" auf der Teilklassenseite. Steht dort also nix im XMI, müssen die Standardwerte für Multiplizitäten angepasst werden. (GLEICHES GILT FÜR KOMPOSITIONEN)
+
+
+KOMPOSITIONEN:
+
+Siehe oben Aggregationen. Das einzige was sich ändert ist in der Zeile von <ownedAttribute> der Wert "aggregation". Sie dazu auch oben unter Punkt 3.
+Statt weißem Diamant ist dort ein Schwarzer Diamant.
+
+
+
+GENERALISIERUNG:
+
+<packagedElement xmi:type="uml:Package" xmi:id="_FneykBBSEe6AHf2U09EywQ" name="Generalisierung">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ks83kBBSEe6AHf2U09EywQ" name="Oberklasse"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_L_pOgBBSEe6AHf2U09EywQ" name="Unterklasse">
+      <generalization xmi:type="uml:Generalization" xmi:id="_QcOHgBBSEe6AHf2U09EywQ" general="_Ks83kBBSEe6AHf2U09EywQ"/>
+    </packagedElement>
+</packagedElement>
+
+Bei der Generalisierung handelt sich im Grunde um 2 Klassen. Der Unterklasse ist nur ein <generalization> Tag untergeordnet. Dieses hat wiederum ein Tag "general".
+Dieser "general"-Tag hält als Wert die "xmi:id" der Oberklasse.
+
+
+ASSOZIATIONSKLASSEN:
+
+<packagedElement xmi:type="uml:AssociationClass" xmi:id="_5GYNABBSEe6AHf2U09EywQ" name="AssociationClass6" memberEnd="_5GYNAxBSEe6AHf2U09EywQ _5GY0EBBSEe6AHf2U09EywQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5GYNARBSEe6AHf2U09EywQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_5GYNAhBSEe6AHf2U09EywQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_5GYNAxBSEe6AHf2U09EywQ" type="_u2t7EBBSEe6AHf2U09EywQ" association="_5GYNABBSEe6AHf2U09EywQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_5GY0EBBSEe6AHf2U09EywQ" name="kochmaterial" type="_wh8GwBBSEe6AHf2U09EywQ" association="_5GYNABBSEe6AHf2U09EywQ"/>
+</packagedElement>
+
+1. Die Assoziationsklasse ist eine Assoziation zwischen einem Klassenobjekt und einer anderen Assoziation.
+2. Das erste <ownedEnd> enthält einen Tag "type". Dessen Wert ist die "xmi:id" der Assoziation, bei der die Assoziationsklasse anliegt.
+3. Das zweite <ownedEnd> enthält einen Tag "name". Dessen Wert ist das Klassenobjekt auf der anderen Seite.
+
+
+
+
+-- WAS NICHT FUNKTIONIERT --
+
+-- WAS VLLT. MÖGLICH IST, ABER NOCH NICHT INTERGRIERT IST --
+Abgeleitete Assoziationen?
+Standardwerte von Attributen?
+
+-- WAS WIR BRAUCHEN --
+Standardwerte: Wenn der Konverter etwas nicht erkennen kann, aber zumindest den Typ, soll ein Standardmuster geben, worauf er zurückgreifen kann. Zb Standard-Assoziation oder -Klasse. Kann der Typ gar nicht erkannt werden, wird der Teil weggelassen und geloggt. 

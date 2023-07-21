@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_TP7hoAIiEe6-sZ-gnzEnNA" name="jsipher-testruns">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_TTM4EAIiEe6-sZ-gnzEnNA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_N3yjUA-LEe6QaIJmSfJw8Q" name="Package3">
+    <packagedElement xmi:type="uml:Association" xmi:id="_z5H6gA-NEe6QaIJmSfJw8Q" visibility="protected" memberEnd="_z5ML8A-NEe6QaIJmSfJw8Q _z5OoMA-NEe6QaIJmSfJw8Q" navigableOwnedEnd="_z5ML8A-NEe6QaIJmSfJw8Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z5Lk4A-NEe6QaIJmSfJw8Q" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z5Lk4Q-NEe6QaIJmSfJw8Q" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_z5ML8A-NEe6QaIJmSfJw8Q" name="koch" type="_Ok5g8A-LEe6QaIJmSfJw8Q" association="_z5H6gA-NEe6QaIJmSfJw8Q">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pBOQ8A-aEe6LYc9A_SZ23g" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_z5OoMA-NEe6QaIJmSfJw8Q" name="rezept" type="_y7N9QA-MEe6QaIJmSfJw8Q" association="_z5H6gA-NEe6QaIJmSfJw8Q"/>
+    </packagedElement>
+    
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="_g1bqUA-REe6LYc9A_SZ23g" memberEnd="_g1bqUw-REe6LYc9A_SZ23g _g1cRYg-REe6LYc9A_SZ23g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g1bqUQ-REe6LYc9A_SZ23g" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g1bqUg-REe6LYc9A_SZ23g" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_g1cRYg-REe6LYc9A_SZ23g" name="rezept" type="_y7N9QA-MEe6QaIJmSfJw8Q" association="_g1bqUA-REe6LYc9A_SZ23g"/>
+    </packagedElement>
+
+
+    <packagedElement xmi:type="uml:Association" xmi:id="_kqXUgA-REe6LYc9A_SZ23g" memberEnd="_kqX7kg-REe6LYc9A_SZ23g _kqX7kw-REe6LYc9A_SZ23g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kqX7kA-REe6LYc9A_SZ23g" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kqX7kQ-REe6LYc9A_SZ23g" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_kqX7kg-REe6LYc9A_SZ23g" name="zutat" type="_Hv2tAA-REe6LYc9A_SZ23g" aggregation="shared" association="_kqXUgA-REe6LYc9A_SZ23g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UVpAMBA-Ee6AHf2U09EywQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UWIIYBA-Ee6AHf2U09EywQ" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_kqX7kw-REe6LYc9A_SZ23g" name="koch" type="_Ok5g8A-LEe6QaIJmSfJw8Q" association="_kqXUgA-REe6LYc9A_SZ23g"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ok5g8A-LEe6QaIJmSfJw8Q" name="Koch">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_aetAgA-LEe6QaIJmSfJw8Q" name="RezeptAussuchen"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_KBsJkA-NEe6QaIJmSfJw8Q" name="AccountName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_N33J4A-NEe6QaIJmSfJw8Q" name="RezeptWaehlen">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_W2M94A-NEe6QaIJmSfJw8Q" name="RezeptID" direction="inout">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+
+
+    <packagedElement xmi:type="uml:Class" xmi:id="_y7N9QA-MEe6QaIJmSfJw8Q" name="Rezept">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_74v48A-MEe6QaIJmSfJw8Q" name="RezeptID">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yjeJYBBBEe6AHf2U09EywQ" value="11"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yjuoEBBBEe6AHf2U09EywQ" value="11"/>
+      </ownedAttribute>
+
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_g1bqUw-REe6LYc9A_SZ23g" name="zutat" type="_Hv2tAA-REe6LYc9A_SZ23g" aggregation="composite" association="_g1bqUA-REe6LYc9A_SZ23g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_g1cRYA-REe6LYc9A_SZ23g"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_g1cRYQ-REe6LYc9A_SZ23g" value="1"/>
+      </ownedAttribute>
+      
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sQxdQBA2Ee6AHf2U09EywQ" name="RezeptName" isStatic="true" isOrdered="true" isReadOnly="true" isDerived="true" isDerivedUnion="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w_BVEBA2Ee6AHf2U09EywQ" value="*"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_QAADYBBDEe6AHf2U09EywQ" value="Leer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_jOMv4BA-Ee6AHf2U09EywQ" name="RezeptSchritte" visibility="package">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kc0fIBA-Ee6AHf2U09EywQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kdWDkBA-Ee6AHf2U09EywQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_0DU8IhBNEe6AHf2U09EywQ" name="zutatrezept" type="_wyOXwBBNEe6AHf2U09EywQ" association="_0DUVEBBNEe6AHf2U09EywQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0DVjMBBNEe6AHf2U09EywQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0DVjMRBNEe6AHf2U09EywQ" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+
+
+    <packagedElement xmi:type="uml:Class" xmi:id="_Hv2tAA-REe6LYc9A_SZ23g" name="Zutat" isAbstract="true" isActive="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_SghaQA-REe6LYc9A_SZ23g" name="Zutatenliste" aggregation="composite">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EEList"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wyOXwBBNEe6AHf2U09EywQ" name="ZutatRezept"/>
+  </packagedElement>
+
+  <packagedElement xmi:type="uml:Association" xmi:id="_0DUVEBBNEe6AHf2U09EywQ" memberEnd="_0DU8IhBNEe6AHf2U09EywQ _0DVjMhBNEe6AHf2U09EywQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0DU8IBBNEe6AHf2U09EywQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0DU8IRBNEe6AHf2U09EywQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_0DVjMhBNEe6AHf2U09EywQ" name="rezept" type="_y7N9QA-MEe6QaIJmSfJw8Q" association="_0DUVEBBNEe6AHf2U09EywQ"/>
+  </packagedElement>
+
+
+
+
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_DeIV8A-NEe6QaIJmSfJw8Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_DeI9AA-NEe6QaIJmSfJw8Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+  </profileApplication>
+</uml:Model>

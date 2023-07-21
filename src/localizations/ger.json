@@ -1,0 +1,44 @@
+{
+  "lang.headline": "JSipher",
+  "lang.subtitle": "XMI-nach-JSON-Konverter für ST1 & MAS",
+  "lang.jack-subtitle": "JACK3-Konverter für ST1 & MAS",
+
+  "lang.first-paragraph": "Dieser Konverter ist im Rahmen der Bachelorarbeit 'Konzeption, Entwicklung und Evaluierung eines XMI-nach-JSON-Konverters und eines KEA-Mod-Regelsatzes zum automatisierten formativen Feedback für UML/MOOS Klassendiagramme' von Paul Hufnagel unter der Betreuung von Prof. Dr. Mario Winter (Erstprüfer) & Prof. Dr. Lutz Köhler (Zweitprüfer) entstanden.",
+  "lang.second-paragraph": "Der Konverter ist in seiner Funktionsweise auf die Anforderungen der Bachelorarbeit zugeschnitten, wodurch dieser - aktuell - nicht alle Diagramme unterstützt und somit nur eingeschränkt funktioniert. Auch können noch die ein oder anderen Bugs enthalten sein.",
+  "lang.third-paragraph": "Bitte haben Sie dafür Verständnis.",
+  "lang.fourth-paragraph": "Der Konverter speichert keine Daten persistent auf einem Server. Nach dem Schließen des Browsers oder der Desktop App sind alle Daten verloren.",
+
+  "lang.jack-second-paragraph": "Der Konverter ist in seiner Funktionalität auf die Anforderungen der Bachelorarbeit zugeschnitten. Es können gelegentlich noch Bugs enthalten sein.",
+  "lang.jack-fourth-paragraph": "Der Konverter speichert keine Daten persistent auf einem Server. Nach dem Schließen des Browsers oder der Desktop App sind alle Daten verloren.",
+
+  "lang.footer": "© 2023 TH Köln; Entwickelt von Paul Hufnagel",
+  "lang.footer-legal": "Das App-Icon wurde erstellt von Freepik; Bereitgestellt über flaticon.com",
+  "lang.start-button": "Konvertierungsprozess starten",
+
+  "lang.navbar-help": "Hilfe",
+  "lang.navbar-jack-transformator": "JACK3-Konverter",
+  "lang.navbar-xmi-transformator": "XMI-Konverter",
+  "lang.navbar-home": "Startseite",
+
+  "lang.help-title": "Benötigen Sie Hilfe?",
+  "lang.help-text": "Dieser Konverter verfügt über kein Kontaktformular, aber die unten stehenden Links führen Sie zu dem entsprechenden Forum Ihres Moduls. Dort gibt es einen Sammelthread, in dem alle Fragen gesammelt gestellt werden können und auch beantwortet werden.",
+  "lang.help-link-st1": "Forum für ST1",
+  "lang.help-link-mas": "Forum für MAS",
+  "lang.help-link-intel": "Foren-Links (Weiterleitung zu ILIAS):",
+  "lang.help-close": "[X] Pop-up schließen",
+
+  "lang.upload-here": "Bitte laden Sie Ihre UML-Diagramm-Datei hier hoch:",
+  "lang.upload-info": "Bitte beachten Sie, dass die Datei eine '.uml'- oder '.xmi'-Datei sein muss.",
+
+  "lang.back-btn": "Einen Schritt zurück",
+  "lang.next-btn": "Datei auswerten",
+  "lang.test-btn": "Datei überprüfen",
+  "lang.download-btn": "Konvertierte JSON-Datei herunterladen",
+
+  "lang.jack-next-btn": "Header austauschen",
+
+  "lang.mouseover-return-home": "Hiermit kehren Sie nicht nur zur Startseite zurück, sondern setzen auch alle Daten zurück",
+
+  "lang.selected-pkg-msg": "Das ausgewählte Paket ist: ",
+  "lang.select-here": "Bitte wählen Sie hier das Paket aus, das Sie umwandeln möchten:"
+}
