@@ -3,6 +3,7 @@
 import {onMounted} from "vue";
 import {xmiConverterIsShown} from "@/plugins/i18n";
 import router from "@/router";
+import Footer from "@/components/Footer.vue";
 
 onMounted(() => {
   if (xmiConverterIsShown.value) {
