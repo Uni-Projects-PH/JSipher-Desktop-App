@@ -3,17 +3,89 @@
 import router from "@/router";
 import Footer from "@/components/Footer.vue";
 import {i18n} from "@/plugins/i18n";
-import {useMainStore} from "@/stores/main";
 import {ref} from "vue";
 
-const store = useMainStore();
 const fileIsOK = ref(false);
 const successfulApprovement = ref("");
 
+function generateMultiplicityForJack3(xmlFileString: string): void {
+  try {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlFileString, 'application/xml');
 
+    const modelElement = xmlDoc.querySelector('uml\\:Model');
+    if (modelElement) {
+      modelElement.setAttribute('xmi:version', '2.1');
+      modelElement.setAttribute('xmlns:xmi', 'http://www.omg.org/spec/XMI/20131001');
+    }
 
+    const elementsToProcess = xmlDoc.querySelectorAll('ownedAttribute, ownedEnd');
 
-function setNewXMIHeader() {
+    elementsToProcess.forEach((element) => {
+      const xmiType = element.getAttribute('xmi:type');
+
+      if (xmiType === 'uml:Property') {
+        const lowerValueElement = element.querySelector('lowerValue');
+        const upperValueElement = element.querySelector('upperValue');
+
+        if (lowerValueElement) {
+          if (!lowerValueElement.getAttribute('value')) {
+            lowerValueElement.setAttribute('value', '0');
+          }
+        } else {
+          const newLowerValueElement = xmlDoc.createElement('lowerValue');
+          newLowerValueElement.setAttribute('xmi:type', 'uml:LiteralInteger');
+          newLowerValueElement.setAttribute('value', '1');
+          element.appendChild(newLowerValueElement);
+        }
+
+        if (upperValueElement) {
+          if (!upperValueElement.getAttribute('value')) {
+            upperValueElement.setAttribute('value', '1');
+          }
+        } else {
+          const newUpperValueElement = xmlDoc.createElement('upperValue');
+          newUpperValueElement.setAttribute('xmi:type', 'uml:LiteralInteger');
+          newUpperValueElement.setAttribute('value', '1');
+          element.appendChild(newUpperValueElement);
+        }
+      } else if (xmiType === 'uml:Association') {
+        return
+      } else {
+        console.error('Unbekannter Typ:', xmiType);
+      }
+    });
+
+    // Format XML
+    const tab = '  ';
+    const formattedXmlString = new XMLSerializer().serializeToString(xmlDoc);
+    const formatted = formattedXmlString
+        .split('\n')
+        .map((line) => {
+          if (line.match(/<\/?.+>/)) {
+            return line;
+          }
+          return tab + line;
+        })
+        .join('\n');
+
+    const updatedXmlBlob = new Blob([formatted], { type: 'text/xml' });
+
+    const url = URL.createObjectURL(updatedXmlBlob);
+    const link = document.createElement('a');
+    link.download = 'JACK3-kompatibles_Diagramm.uml';
+    link.href = url;
+    link.click();
+    link.remove();
+
+    console.log('XML-Datei erfolgreich aktualisiert.');
+
+  } catch (error) {
+    console.error('Fehler beim Aktualisieren der XML-Datei:', error);
+  }
+}
+
+function adjustXMIData() {
   const fileUpload = document.getElementById("diagram-upload") as HTMLInputElement;
   const reader = new FileReader();
   reader.onload = function () {
@@ -29,21 +101,8 @@ function setNewXMIHeader() {
         alert("The file could not be read.");
       }
     }
-    
-    modelTag.setAttribute("xmi:version", "2.1");
-    modelTag.setAttribute("xmlns:xmi", "http://www.omg.org/spec/XMI/20131001");
 
-
-    const serializer = new XMLSerializer();
-    const xmlStringNew = serializer.serializeToString(xmlDOM);
-    const blob = new Blob([xmlStringNew], {type: "text/xml"});
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.download = "JACK3-kompatibles_Diagramm.uml";
-    link.href = url;
-    link.click();
-
-    link.remove();
+    generateMultiplicityForJack3(xmlString);
   };
 
   reader.onerror = function () {
@@ -91,7 +150,7 @@ function setNewXMIHeader() {
       </p>
       <div class="process-btn-holder">
         <button class="back-btn" @click="router.back()">{{$t('lang.back-btn')}}</button>
-        <button class="next-btn" @click="setNewXMIHeader()">{{$t('lang.jack-next-btn')}}</button>
+        <button class="next-btn" @click="adjustXMIData()">{{$t('lang.jack-next-btn')}}</button>
       </div>
     </article>
 

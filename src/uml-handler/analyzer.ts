@@ -211,3 +211,4 @@ function generateMultiplicityForClasses(propertyOrParameterElement: Element): st
 
     return `${lowerValue}..${upperValue}`;
 }
+
