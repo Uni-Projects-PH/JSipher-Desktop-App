@@ -4,9 +4,107 @@ import router from "@/router";
 import Footer from "@/components/Footer.vue";
 import {i18n} from "@/plugins/i18n";
 import {ref} from "vue";
+import {formatXmi} from "@/logic/xmi-formatter";
 
 const fileIsOK = ref(false);
 const successfulApprovement = ref("");
+
+function processAssociationsForMultiplicities(xmiDocument: Document) {
+  const packagedElements = xmiDocument.querySelectorAll('packagedElement');
+  const packagedElementsList = Array.from(packagedElements);
+  const ownedAttributeIdToTypeMapping = new Map<string, string>();
+
+  packagedElementsList.forEach(x => {
+    const ownedAttributes = x.querySelectorAll('ownedAttribute');
+    ownedAttributes.forEach(y => {
+      const id = y.getAttribute('xmi:id');
+      const type = y.getAttribute('type');
+      ownedAttributeIdToTypeMapping.set(id, type);
+    });
+  });
+
+  console.log("Gefundene Assoziationen:", packagedElements.length); // Neu
+
+  // Iteriere über jede gefundene Assoziation
+  packagedElements.forEach((e) => {
+    const association = e.getAttribute('xmi:type');
+
+    if (association === 'uml:Association') {
+      console.log("Verarbeite Assoziation:", e);
+      // Finde die beiden Klassen, die durch die Assoziation verbunden sind
+      const ownedEnds = e.querySelectorAll('ownedEnd');
+
+      let class1OwnedEnd, class2OwnedEnd, classId1, classId2, class1, class2, clazz;
+
+      if (ownedEnds.length === 1) {
+        class1OwnedEnd = ownedEnds[0];
+        classId1 = class1OwnedEnd.getAttribute('type');
+        class1 = packagedElementsList.find(x => x.getAttribute('xmi:id') === classId1);
+
+        // Extrahiere die IDs aus dem memberEnd Attribut
+        const memberEndAttr = e.getAttribute('memberEnd');
+        if (memberEndAttr) {
+          const otherId = memberEndAttr.replace(class1OwnedEnd.getAttribute("xmi:id"), "").trim();
+          const classId = ownedAttributeIdToTypeMapping.get(otherId);
+          clazz = packagedElementsList.find(x => x.getAttribute('xmi:id') === classId);
+          console.log("Gefundene Klasse:", clazz);
+          console.log("Class 1:", class1);
+          console.log("Class 1 Owned End:", class1OwnedEnd);
+        }
+
+      } else if (ownedEnds.length === 2) {
+        class1OwnedEnd = ownedEnds[0];
+        class2OwnedEnd = ownedEnds[1];
+
+        classId1 = class1OwnedEnd.getAttribute('type');
+        classId2 = class2OwnedEnd.getAttribute('type');
+
+        class1 = packagedElementsList.find(x => x.getAttribute('xmi:id') === classId1);
+        class2 = packagedElementsList.find(x => x.getAttribute('xmi:id') === classId2);
+
+      } else {
+        console.error('Unbekannte Anzahl an ownedEnds:', ownedEnds.length);
+      }
+
+      console.log(class1);
+      console.log(class2);
+
+
+      /*const class1OwnedEnd = ownedEnds[0];
+      const class2OwnedEnd = ownedEnds[1];
+
+      // Ermittle die IDs der verbundenen Klassen
+      const classId1 = class1OwnedEnd.getAttribute('type');
+      const classId2 = class2OwnedEnd.getAttribute('type');
+
+      console.log(classId1, classId2);
+
+      // Finde die Klassen im Dokument
+      const class1 = packagedElementsList.filter(x => x.getAttribute('xmi:id') === classId1)[0];
+      const class2 = packagedElementsList.filter(x => x.getAttribute('xmi:id') === classId2)[0];
+
+      console.log(class1);
+      console.log(class2);*/
+
+      if (class1 && class2) {
+        class1.innerHTML += class2OwnedEnd.outerHTML.replace(/ownedEnd/g, 'ownedAttribute');
+        class2.innerHTML += class1OwnedEnd.outerHTML.replace(/ownedEnd/g, 'ownedAttribute');
+      } else if (class1) {
+        clazz.innerHTML += class1OwnedEnd.outerHTML.replace(/ownedEnd/g, 'ownedAttribute');
+      } else if (class2) {
+        class1.innerHTML += class2OwnedEnd.outerHTML.replace(/ownedEnd/g, 'ownedAttribute');
+      }
+    }
+  });
+
+  const serializer = new XMLSerializer();
+  const modifiedXmiString = serializer.serializeToString(xmiDocument);
+  console.log("Modifiziertes XMI:", modifiedXmiString); // Neu
+  console.log(xmiDocument);
+
+  generateMultiplicityForJack3(modifiedXmiString);
+}
+
 
 function generateMultiplicityForJack3(xmlFileString: string): void {
   try {
@@ -49,27 +147,23 @@ function generateMultiplicityForJack3(xmlFileString: string): void {
           newUpperValueElement.setAttribute('value', '1');
           element.appendChild(newUpperValueElement);
         }
-      } else if (xmiType === 'uml:Association') {
-        return
       } else {
         console.error('Unbekannter Typ:', xmiType);
       }
     });
 
-    // Format XML
-    const tab = '  ';
-    const formattedXmlString = new XMLSerializer().serializeToString(xmlDoc);
-    const formatted = formattedXmlString
-        .split('\n')
-        .map((line) => {
-          if (line.match(/<\/?.+>/)) {
-            return line;
-          }
-          return tab + line;
-        })
-        .join('\n');
+    const allElements = xmlDoc.querySelectorAll('*');
+    allElements.forEach((element) => {
+      if (element !== modelElement) {
+        element.removeAttribute('xmlns:xmi');
+      }
+    });
 
-    const updatedXmlBlob = new Blob([formatted], { type: 'text/xml' });
+    // Format XML
+    const unformattedXmlString = new XMLSerializer().serializeToString(xmlDoc);
+    const formattedXmlString = formatXmi(unformattedXmlString);
+
+    const updatedXmlBlob = new Blob([formattedXmlString], { type: 'text/xml' });
 
     const url = URL.createObjectURL(updatedXmlBlob);
     const link = document.createElement('a');
@@ -102,7 +196,7 @@ function adjustXMIData() {
       }
     }
 
-    generateMultiplicityForJack3(xmlString);
+    processAssociationsForMultiplicities(xmlDOM);
   };
 
   reader.onerror = function () {

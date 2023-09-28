@@ -1,6 +1,5 @@
-# JSipher-Desktop-App
-
-The JSipher-Project's side repository. This is the repository for the Desktop App. If you are looking for the WebApp, go [this way](https://github.com/Pythagorion/JSipher-Website).
+# jsipher
+The JSipher-Project's main repository. This is the repository for the WebApp. If you are looking for the Desktop App, go [this way](https://github.com/Pythagorion/JSipher-Desktop-App).
 
 ## ENGLISH
 
