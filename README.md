@@ -1,11 +1,79 @@
-# jsipher
-The JSipher-Project's main repository. This is the repository for the WebApp. If you are looking for the Desktop App, go [this way](https://github.com/Pythagorion/JSipher-Desktop-App).
+# electron-vite-vue
 
-## ENGLISH
+🥳 Really simple `Electron` + `Vue` + `Vite` boilerplate.
 
-JSipher is a XMI-to-JSON-Converter that was made as part of the bachelor thesis 'Konzeption, Entwicklung und Evaluierung eines XMI-nach-JSON-Konverters und eines KEA-Mod-Regelsatzes zum automatisierten formativen Feedback für UML/MOOS Klassendiagramme' (in english: 'Conception, development and evaluation of an XMI-to-JSON converter and a KEA-Mod rule set for automated formative feedback for UML/MOOS class diagrams') by Paul Hufnagel under the supervision of Prof. Dr. Mario Winter (first examiner) & Prof. Dr. Lutz Köhler (second examiner).
-It converts XMI files from Eclipse Papyrus (the uml-files) to JSON files that can be used by the [KEA-Mod](https://keamod.gi.de/)
+<!-- [![awesome-vite](https://awesome.re/mentioned-badge.svg)](https://github.com/vitejs/awesome-vite) -->
+<!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/ae3863e3-1aec-4eb1-8f9f-1890af56929d/deploy-status)](https://app.netlify.com/sites/electron-vite/deploys) -->
+<!-- [![GitHub license](https://img.shields.io/github/license/caoxiemeihao/electron-vite-vue)](https://github.com/electron-vite/electron-vite-vue/blob/main/LICENSE) -->
+<!-- [![GitHub stars](https://img.shields.io/github/stars/caoxiemeihao/electron-vite-vue?color=fa6470)](https://github.com/electron-vite/electron-vite-vue) -->
+<!-- [![GitHub forks](https://img.shields.io/github/forks/caoxiemeihao/electron-vite-vue)](https://github.com/electron-vite/electron-vite-vue) -->
+[![GitHub Build](https://github.com/electron-vite/electron-vite-vue/actions/workflows/build.yml/badge.svg)](https://github.com/electron-vite/electron-vite-vue/actions/workflows/build.yml)
+[![GitHub Discord](https://img.shields.io/badge/chat-discord-blue?logo=discord)](https://discord.gg/sRqjYpEAUK)
 
-## DEUTSCH
-JSipher ist ein XMI-nach-JSON-Konverter, der im Rahmen der Bachelorarbeit 'Konzeption, Entwicklung und Evaluierung eines XMI-nach-JSON-Konverters und eines KEA-Mod-Regelsatzes zum automatisierten formativen Feedback für UML/MOOS Klassendiagramme' von Paul Hufnagel unter der Betreuung von Prof. Dr. Mario Winter & Prof. Dr. Lutz Köhler entstanden ist. Dr. Mario Winter (erster Prüfer) & Prof. Dr. Lutz Köhler (zweiter Prüfer).
-Er konvertiert XMI-Dateien aus Eclipse Papyrus (die uml-Dateien) in JSON-Dateien, die von der [KEA-Mod](https://keamod.gi.de/) verwendet werden können.
+## Features
+
+📦 Out of the box  
+🎯 Based on the official [template-vue-ts](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-vue-ts), less invasive  
+🌱 Extensible, really simple directory structure  
+💪 Support using Node.js API in Electron-Renderer  
+🔩 Support C/C++ native addons  
+🖥 It's easy to implement multiple windows  
+
+## Quick Setup
+
+```sh
+# clone the project
+git clone https://github.com/electron-vite/electron-vite-vue.git
+
+# enter the project directory
+cd electron-vite-vue
+
+# install dependency
+npm install
+
+# develop
+npm run dev
+```
+
+## Debug
+
+![electron-vite-react-debug.gif](https://github.com/electron-vite/electron-vite-react/blob/main/electron-vite-react-debug.gif?raw=true)
+
+## Directory
+
+```diff
++ ├─┬ electron
++ │ ├─┬ main
++ │ │ └── index.ts    entry of Electron-Main
++ │ └─┬ preload
++ │   └── index.ts    entry of Preload-Scripts
+  ├─┬ src
+  │ └── main.ts       entry of Electron-Renderer
+  ├── index.html
+  ├── package.json
+  └── vite.config.ts
+```
+
+<!--
+## Be aware
+
+🚨 By default, this template integrates Node.js in the Renderer process. If you don't need it, you just remove the option below. [Because it will modify the default config of Vite](https://github.com/electron-vite/vite-plugin-electron-renderer#config-presets-opinionated).
+
+```diff
+# vite.config.ts
+
+export default {
+  plugins: [
+-   // Use Node.js API in the Renderer-process
+-   renderer({
+-     nodeIntegration: true,
+-   }),
+  ],
+}
+```
+-->
+
+## FAQ
+
+- [C/C++ addons, Node.js modules - Pre-Bundling](https://github.com/electron-vite/vite-plugin-electron-renderer#dependency-pre-bundling)
+- [dependencies vs devDependencies](https://github.com/electron-vite/vite-plugin-electron-renderer#dependencies-vs-devdependencies)
