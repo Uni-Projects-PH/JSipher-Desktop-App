@@ -64,12 +64,11 @@
 
 # Regeln zu Attribute
 
+
    <rule type="presence" points="5">
         <query>from x,y : V{Class} with isDefined(x.name) and x.name="CookMixAnweisung" and isDefined(y.name) and y.name="Anweisung" and x --> V{Generalization} --> y report 1 end</query>
         <feedback>Das Diagramm sollte eine Oberklasse "Anweisung" besitzen, die von einer "CookMixAnweisung" beerbt wird.</feedback>
     </rule> 
-
-
 
     <rule type="absence" points="4">
 		<query>let c := count(from y : V{Property} with isDefined(y.name) report y end) in from x : set(1) with c&lt;7 report c as "count" end</query>
@@ -78,6 +77,7 @@
 
 
 # Regeln zu Beziehungen
+
 
   <rule type="presence" points="11">
 		<query>from x,y : V{Class} with x &lt;-- V{Property} &lt;-- V{Association} --> V{Property} --> y and x.name="Rezept" and y.name="Schritt" report x.name as "start", y.name as "end" end</query>
